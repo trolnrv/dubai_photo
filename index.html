@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Camera Debug App</title>
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+      }
+
+      video {
+        width: 90%;
+        max-width: 420px;
+        border-radius: 12px;
+        background: #000;
+      }
+
+      button {
+        margin: 10px;
+        padding: 12px 18px;
+        font-size: 16px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+      }
+
+      #log {
+        margin-top: 15px;
+        font-size: 14px;
+        text-align: left;
+        background: #f4f4f4;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <h2>📸 Camera Debug App</h2>
+
+    <video id="video" autoplay playsinline></video>
+
+    <br>
+
+    <button onclick="startCamera()">Start Camera</button>
+    <button onclick="takePhoto()">Take Photo</button>
+
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <div id="log">Logs:\n</div>
+
+    <script>
+      let stream;
+      const logBox = document.getElementById("log");
+
+      function log(msg) {
+        console.log(msg);
+        logBox.innerText += msg + "\n";
+      }
+
+      async function startCamera() {
+        try {
+          log("📷 Starting camera...");
+
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: true
+          });
+
+          document.getElementById("video").srcObject = stream;
+
+          log("✅ Camera started");
+        } catch (e) {
+          log("❌ Camera error: " + e.message);
+        }
+      }
+
+      async function takePhoto() {
+        try {
+          log("📸 Taking photo...");
+
+          const video = document.getElementById("video");
+          const canvas = document.getElementById("canvas");
+
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(video, 0, 0);
+
+          const image = canvas.toDataURL("image/png");
+
+          log("📦 Image captured (size: " + image.length + ")");
+
+          const res = await fetch("/api/upload", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              image: image,
+              timestamp: Date.now()
+            })
+          });
+
+          log("📡 Request sent");
+
+          const data = await res.json().catch(() => ({}));
+
+          log("📨 Response: " + JSON.stringify(data));
+
+          if (res.ok) {
+            log("✅ Upload success");
+          } else {
+            log("❌ Upload failed");
+          }
+
+        } catch (e) {
+          log("❌ Error: " + e.message);
+        }
+      }
+    </script>
+
+  </body>
+</html>
