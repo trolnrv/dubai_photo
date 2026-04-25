@@ -51,9 +51,7 @@ function initBoutons(){
 
 startCamera();
 initBoutons();
+showCameraUI();
 
 
 initZoom();
-document.addEventListener("DOMContentLoaded", () => {
-	showCameraUI();
-}

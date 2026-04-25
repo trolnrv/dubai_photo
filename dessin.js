@@ -100,20 +100,13 @@ export function initZoom(){
 
 const uiCamera = document.querySelector(".ui-camera");
 const uiEdit = document.querySelector(".ui-edit");
-if(uiCamera == null || uiCamera = undefined){//
-	window.location.href = "/";
-}
 
 export function showCameraUI() {
-  //uiCamera.style.display = "block";
-  uiCamera.style.display = "none";//
+  uiCamera.style.display = "block";
   uiEdit.style.display = "none";
 }
 
-uiCamera.style.display = "none";
-uiEdit.style.display = "none";
 export function showEditUI() {
   uiCamera.style.display = "none";
-  //uiEdit.style.display = "block";
-  uiEdit.style.display = "none";//
+  uiEdit.style.display = "block";
 }
