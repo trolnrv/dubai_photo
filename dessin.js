@@ -1,0 +1,119 @@
+import { log } from "./utils.js";
+
+let candraw = false;
+export function cantdraw(){ candraw = false; }
+export function initColoriage(){
+	const path = window.location.pathname;
+	const suffixe = path.split("/cam/")[1];
+	const id = suffixe.split("/")[0];
+	const feuille = decodeURIComponent(suffixe.split("/")[1]);
+	console.log(`id: ${id}, feuille: ${feuille}`);
+	//takePhoto(id, feuille);
+	//
+	const video = document.getElementById("video");
+	//const dessin = document.getElementById("dessin");
+	const ctx = dessin.getContext("2d");
+	ctx.clearRect(0, 0, dessin.width, dessin.height);//
+	dessin.width = video.videoWidth;
+	dessin.height = video.videoHeight;
+	ctx.drawImage(video, 0, 0);
+	let drawing = false;
+	candraw = true;
+	let lastX = null;
+	let lastY = null;
+	dessin.addEventListener("touchstart", (e) => {
+		log("touchstart");
+		drawing = true;
+		const rect = dessin.getBoundingClientRect();
+		const touch = e.touches[0];
+		lastX = (touch.clientX - rect.left) * (dessin.width / rect.width);
+		lastY = (touch.clientY - rect.top) * (dessin.height / rect.height);
+	});
+	dessin.addEventListener("touchend", () => {
+		log("touchend");
+		drawing = false;
+		lastX = null;
+		lastY = null;
+	});
+	dessin.addEventListener("touchmove", (e) => {
+		if (!(drawing && candraw)) return;
+		e.preventDefault(); // important mobile
+		const rect = dessin.getBoundingClientRect();
+		const touch = e.touches[0];
+		const x = (touch.clientX - rect.left) * (dessin.width / rect.width);
+		const y = (touch.clientY - rect.top) * (dessin.height / rect.height);
+		// dessin
+		ctx.strokeStyle = "red";
+		const grosFeutre = true;
+		if(grosFeutre){
+			ctx.lineWidth = 10;
+			ctx.globalAlpha = 0.8;
+		} else { ctx.lineWidth = 5; }
+		ctx.lineCap = "round";
+		ctx.beginPath();
+		ctx.moveTo(lastX, lastY);
+		ctx.lineTo(x, y);
+		ctx.stroke();
+		lastX = x;
+		lastY = y;
+	}, { passive: false });
+}
+
+let scale = 1;
+let lastDistance = null;
+const video = document.getElementById("video");
+function getDistance(touches) {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+export function initZoom(){
+	document.addEventListener("touchmove", (e) => {
+		if (e.touches.length === 2) {
+			e.preventDefault();
+
+			const distance = getDistance(e.touches);
+
+			if (lastDistance) {
+				const zoomFactor = distance / lastDistance;
+
+				scale *= zoomFactor;
+
+				// limites
+				scale = Math.min(Math.max(scale, 1), 4);
+
+				video.style.transform = `scale(${scale})`;
+			}
+
+			lastDistance = distance;
+		}
+	}, { passive: false });
+
+	document.addEventListener("touchend", () => {
+		lastDistance = null;
+	});
+	document.addEventListener("dblclick", () => {
+		scale = 1;
+		video.style.transform = "scale(1)";
+	});
+}
+
+const uiCamera = document.querySelector(".ui-camera");
+const uiEdit = document.querySelector(".ui-edit");
+if(uiCamera == null || uiCamera = undefined){//
+	window.location.href = "/";
+}
+
+export function showCameraUI() {
+  //uiCamera.style.display = "block";
+  uiCamera.style.display = "none";//
+  uiEdit.style.display = "none";
+}
+
+uiCamera.style.display = "none";
+uiEdit.style.display = "none";
+export function showEditUI() {
+  uiCamera.style.display = "none";
+  //uiEdit.style.display = "block";
+  uiEdit.style.display = "none";//
+}

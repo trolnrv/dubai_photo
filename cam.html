@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>📸 Caméra</title>
+
+    <link rel="stylesheet" href="/cam.css" />
+  </head>
+
+  <body>
+
+    <video id="video" autoplay playsinline muted></video>
+
+    <div class="ui ui-caméra">
+	    <button id="btnReturn">⬅️ </button>
+	    <button id="btnSwitch">🔄</button>
+	    <button id="btnPhoto">📸</button>
+    </div>
+    <div class="ui ui-edit">
+	    <button id="btnCroix">❌ </button>
+	    <button id="btnValidé">✅ </button>
+    </div>
+
+    <canvas id="dessin"></canvas>
+    <canvas id="photo"></canvas>
+    <script type="module" src="/cam.js"></script>
+
+  </body>
+</html>

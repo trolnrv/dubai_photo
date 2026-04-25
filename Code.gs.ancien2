@@ -1,0 +1,74 @@
+function doPost(e) {
+  const data = JSON.parse(e.postData.contents);
+  if (data.type == "photo"){
+    const imageData = data.image;
+
+    const base64Data = imageData.split(",")[1];
+
+    const blob = Utilities.newBlob(
+      Utilities.base64Decode(base64Data),
+      "image/png",
+      //4"photo.png"
+      Date().toString() + ".png"//4
+    );
+
+    const FOLDER_ID ="1FLZJ7hZM1SGHOnCfoDk18waJ2CVPvukX";//
+    const folder = DriveApp.getFolderById(FOLDER_ID);//
+    const file = folder.createFile(blob)
+    //const file = DriveApp.createFile(blob);
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+    ///const url = file.getUrl();
+    const fileId = file.getId();///
+    const imageUrl = "=IMAGE(\"https://drive.google.com/uc?export=view&id=" + fileId + "\")";///
+
+    //const fichier = "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo";
+    //const feuille = "Feuille 1";
+    const props = PropertiesService.getScriptProperties();
+    const fichier = props.getProperty("fichier");
+    const feuille = props.getProperty("feuille");
+  
+    const sheet = SpreadsheetApp
+      .openById(fichier)
+      .getSheetByName(feuille);
+
+    ///sheet.appendRow([
+    ///  new Date(),
+    ///  //url
+    ///  '=IMAGE("' + url + '")'
+    ///]);
+    sheet.appendRow([new Date(), imageUrl]);///
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }  if (data.type == "MAJfichier"){
+      const props = PropertiesService.getScriptProperties();
+      props.setProperty("fichier", data.nom);
+  }  if (data.type == "MAJfeuille"){
+      const props = PropertiesService.getScriptProperties();
+      props.setProperty("feuille", data.nom);
+  }
+}
+function doGet() {
+  const randomText = "TEST_FILE_" + new Date().toISOString() + "_" + Math.random();
+
+  const blob = Utilities.newBlob(
+    randomText,
+    "text/plain",
+    "test.txt"
+  );
+
+  const file = DriveApp.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+  return ContentService.createTextOutput(
+    JSON.stringify({
+      ok: true,
+      url: file.getUrl()
+    })
+  ).setMimeType(ContentService.MimeType.JSON);
+  //return ContentService
+  //  .createTextOutput(JSON.stringify({ ok: true, mode: "GET OK" }))
+  //  .setMimeType(ContentService.MimeType.JSON);
+}

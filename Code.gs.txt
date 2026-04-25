@@ -1,0 +1,113 @@
+function doPost(e) {
+  const data = JSON.parse(e.postData.contents);
+  if (data.type == "photo"){
+    const imageData = data.image;
+
+    const base64Data = imageData.split(",")[1];
+
+    const blob = Utilities.newBlob(
+      Utilities.base64Decode(base64Data),
+      "image/png",
+      //4"photo.png"
+      Date().toString() + ".png"//4
+    );
+
+    const FOLDER_ID ="1FLZJ7hZM1SGHOnCfoDk18waJ2CVPvukX";//
+    const folder = DriveApp.getFolderById(FOLDER_ID);//
+    const file = folder.createFile(blob)
+    //const file = DriveApp.createFile(blob);
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+    ///const url = file.getUrl();
+    const fileId = file.getId();///
+    const imageUrl = "=IMAGE(\"https://drive.google.com/uc?export=view&id=" + fileId + "\")";///
+
+    //const fichier = "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo";
+    //const feuille = "Feuille 1";
+    //const props = PropertiesService.getScriptProperties();
+    //const fichier = props.getProperty("fichier");
+    //const feuille = props.getProperty("feuille");
+    const fichier = data.fichier;
+    const feuille = data.feuille;
+
+    const sheet = SpreadsheetApp
+      .openById(fichier)
+      .getSheetByName(feuille);
+
+    ///sheet.appendRow([
+    ///  new Date(),
+    ///  //url
+    ///  '=IMAGE("' + url + '")'
+    ///]);
+    sheet.appendRow([imageUrl]);///
+    //SpreadsheetApp.openById("1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo").getSheetByName("Feuille 1").appendRow(["fichier: " + fichier, "feuille: " + feuille]);
+
+    //return ContentService
+    //  .createTextOutput(JSON.stringify({ ok: true}))
+    //  .setMimeType(ContentService.MimeType.JSON);
+    return ContentService.createTextOutput(fichier);
+  }  if (data.type == "MAJfichier"){
+          //SpreadsheetApp.openById("1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo").getSheetByName("Feuille 1").appendRow(["nomFichier: " + data.nom]);
+      const props = PropertiesService.getScriptProperties();
+      props.setProperty("fichier", data.nom);
+      return ContentService.createTextOutput(data.nom);
+  }  if (data.type == "MAJfeuille"){
+          //SpreadsheetApp.openById("1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo").getSheetByName("Feuille 1").appendRow(["nomFeuille: " + data.nom]);
+      const props = PropertiesService.getScriptProperties();
+      props.setProperty("feuille", data.nom);
+      return ContentService.createTextOutput(data.nom);
+  }
+    // =========================
+  // 💾 UPLOAD (SAVE JSON)
+  // =========================
+  if (data.type == "upload") {
+    const props = PropertiesService.getScriptProperties();
+
+    // clé logique (ex: "config", "userData", etc.)
+    const key = data.key;
+
+    const value = JSON.stringify(data.content);
+
+    props.setProperty(key, value);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({ ok: true })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  // =========================
+  // 📥 DOWNLOAD (READ JSON)
+  // =========================
+  if (data.type == "download") {
+    const props = PropertiesService.getScriptProperties();
+
+    const key = data.key;
+
+    const value = props.getProperty(key);
+
+    return ContentService.createTextOutput(value || "null")
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+function doGet() {
+  const randomText = "TEST_FILE_" + new Date().toISOString() + "_" + Math.random();
+
+  const blob = Utilities.newBlob(
+    randomText,
+    "text/plain",
+    "test.txt"
+  );
+
+  const file = DriveApp.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+  return ContentService.createTextOutput(
+    JSON.stringify({
+      ok: true,
+      url: file.getUrl()
+    })
+  ).setMimeType(ContentService.MimeType.JSON);
+  //return ContentService
+  //  .createTextOutput(JSON.stringify({ ok: true, mode: "GET OK" }))
+  //  .setMimeType(ContentService.MimeType.JSON);
+}

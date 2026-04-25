@@ -1,0 +1,15 @@
+function saveConfig(fileId, sheetName) {
+  const props = PropertiesService.getScriptProperties();
+
+  props.setProperty("FILE_ID", fileId);
+  props.setProperty("SHEET_NAME", sheetName);
+}
+
+function getConfig() {
+  const props = PropertiesService.getScriptProperties();
+
+  return {
+    fileId: props.getProperty("FILE_ID"),
+    sheetName: props.getProperty("SHEET_NAME")
+  };
+}

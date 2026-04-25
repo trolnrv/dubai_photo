@@ -1,0 +1,69 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: black;
+}
+
+/* caméra plein écran */
+#video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+#photo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  touch-action: none;
+  z-index: 5;
+}
+#dessin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  touch-action: none;
+  z-index: 7;
+}
+
+/* overlay UI */
+.ui {
+  position: fixed;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  z-index: 10;
+}
+
+/* boutons style caméra */
+.ui button {
+  font-size: 24px;
+  padding: 15px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.8);
+}
+
+/*bonus pro*/
+.ui {
+  pointer-events: none;
+}
+.ui button {
+  pointer-events: auto;
+}
+.ui {
+  backdrop-filter: blur(10px);
+}

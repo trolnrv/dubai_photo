@@ -1,0 +1,90 @@
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+
+    const image = data.image;
+    const timestamp = data.timestamp;
+
+    const sheet = SpreadsheetApp
+      .openById("1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo")
+      .getSheetByName("Feuille 1");
+
+    sheet.appendRow([
+      new Date(timestamp),
+      image
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ ok: false, error: err.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+
+
+/*{
+  "timeZone": "Europe/Paris",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "webapp": {
+    "executeAs": "USER_DEPLOYING",
+    "access": "ANYONE_ANONYMOUS"
+  }
+}*/
+{
+  "timeZone": "Europe/Paris",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+  ]
+}
+
+Le nouveau
+
+{
+  "timeZone": "Europe/Paris",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "webapp": {
+    "executeAs": "USER_DEPLOYING",
+    "access": "ANYONE_ANONYMOUS"
+  },
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+  ]
+}
+
+/////////////////////
+
+
+{
+  "timeZone": "Europe/Paris",
+  "dependencies": {},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "webapp": {
+    "executeAs": "USER_DEPLOYING",
+    "access": "ANYONE_ANONYMOUS"
+  }
+}
+
+/////////////////
+
+{
+  "timeZone": "Europe/Paris",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+  ]
+}
