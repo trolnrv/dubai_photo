@@ -1,6 +1,6 @@
-const logBox = document.getElementById("log");
+//const logBox = document.getElementById("log");
 export function log(msg) {
-  console.log(msg);
+  //console.log(msg);
   //logBox.innerText += msg + "\n";
 }
 export function getSheetIdFromUrl(url) {
