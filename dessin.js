@@ -102,11 +102,11 @@ const uiCamera = document.querySelector(".ui-caméra");
 const uiEdit = document.querySelector(".ui-edit");
 
 export function showCameraUI() {
-  uiCamera.style.display = "block";
+  uiCamera.style.display = "flex";
   uiEdit.style.display = "none";
 }
 
 export function showEditUI() {
   uiCamera.style.display = "none";
-  uiEdit.style.display = "block";
+  uiEdit.style.display = "flex";
 }
