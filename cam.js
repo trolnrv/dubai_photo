@@ -18,7 +18,6 @@ function initBoutons(){
 	document.getElementById("btnReturn")
 		.addEventListener("click", () => {
 			window.location.href = "/";
-			showEditUI();
 		});
 	document.getElementById("btnSwitch")
 		.addEventListener("click", startCamera);
