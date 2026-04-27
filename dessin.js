@@ -98,7 +98,7 @@ export function initZoom(){
 	});
 }
 
-const uiCamera = document.querySelector(".ui-camera");
+const uiCamera = document.querySelector(".ui-caméra");
 const uiEdit = document.querySelector(".ui-edit");
 
 export function showCameraUI() {
