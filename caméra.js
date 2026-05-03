@@ -29,12 +29,12 @@ export async function startCamera() {
   }
 }
 
-export async function takePhoto(fichier, feuille) {
+export async function takePhoto(canvasID, fichier, feuille) {
   try {
     log("📸 Taking photo...");
 
     const video = document.getElementById("video");
-    const canvas = document.getElementById("canvas");
+    const canvas = document.getElementById(canvasID);
 
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
