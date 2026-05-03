@@ -12,7 +12,7 @@ function initBoutons(){
 	document.getElementById("btnCam")
 		.addEventListener("click", startCamera);
 	document.getElementById("btnPhoto")
-		.addEventListener("click", () => {takePhoto("canvas", "https://docs.google.com/spreadsheets/d/1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo/edit?gid=0#gid=0", "Feuille 1");});
+		.addEventListener("click", () => {takePhoto("canvas", "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo", "Feuille 1");});
 }
 
 
