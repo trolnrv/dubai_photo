@@ -29,7 +29,7 @@ function initBoutons(){
 			const ctx = photo.getContext("2d");
 			photo.width = video.videoWidth;
 			photo.height = video.videoHeight;
-			ctx.drawImage(video, 0, 0);//
+			//ctx.drawImage(video, 0, 0);//
 			//belleImage();
 			initColoriage();
 			showEditUI();
@@ -104,6 +104,19 @@ function belleImage(){//{{{
 		0, 0, cw, ch            // destination
 	);
 }//}}}
+
+function belle(){//AFINIR
+	const video = document.getElementById("video");
+	const photo = document.getElementById("photo");
+	const ctx = photo.getContext("2d");
+
+	const ratio = video.videoHeight / photo.height; //
+	ctx.drawImage(
+		video,
+		*, 0, *, video.videoHeight,		// source
+		0, 0, photo.width, photo.height,	// destination
+	);
+}
 
 
 startCamera();
