@@ -105,7 +105,7 @@ function belleImage(){//{{{
 	);
 }//}}}
 
-function belle(){//AFINIR
+/*function belle(){//AFINIR
 	const video = document.getElementById("video");
 	const photo = document.getElementById("photo");
 	const ctx = photo.getContext("2d");
@@ -116,7 +116,7 @@ function belle(){//AFINIR
 		*, 0, *, video.videoHeight,		// source
 		0, 0, photo.width, photo.height,	// destination
 	);
-}
+}*/
 
 
 startCamera();
