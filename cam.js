@@ -58,7 +58,7 @@ function concatainer(){
 		ffinal.width = video.videoWidth;
 		ffinal.height = video.videoHeight;
 	}
-	ctxfinal.drawImage(ctxPhoto, 0, 0);//ARAJOUTER ctxDessin
+	ctxfinal.drawImage(photo, 0, 0);//ARAJOUTER ctxDessin
 }
 
 
