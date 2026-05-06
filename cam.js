@@ -76,12 +76,12 @@ function concatainer(){//{{{
 const photo = document.getElementById("photo");
 const dessin = document.getElementById("dessin");
 const ffinal = document.getElementById("final");
-photo.width = windows.innerWidth;
-photo.height = windows.innerHeight;
-dessin.width = windows.innerWidth;
-dessin.height = windows.innerHeight;
-ffinal.width = windows.innerWidth;
-ffinal.height = windows.innerHeight;
+photo.width = window.innerWidth;
+photo.height = window.innerHeight;
+dessin.width = window.innerWidth;
+dessin.height = window.innerHeight;
+ffinal.width = window.innerWidth;
+ffinal.height = window.innerHeight;
 
 startCamera();
 initBoutons();
