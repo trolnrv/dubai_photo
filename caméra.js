@@ -36,8 +36,8 @@ export async function takePhoto(canvasID, fichier, feuille) {
     const video = document.getElementById("video");
     const canvas = document.getElementById(canvasID);
 
-    //canvas.width = video.videoWidth;
-    //canvas.height = video.videoHeight;
+    canvas.width = video.videoWidth;//ATTENTION
+    canvas.height = video.videoHeight;//ATTENTION
 
     const ctx = canvas.getContext("2d");
     ctx.drawImage(video, 0, 0);
