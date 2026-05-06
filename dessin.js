@@ -115,9 +115,8 @@ function belle(canvasID){
 	console.log(`ratio: ${ratio}\nlargeurSource: ${largeurSource}`);
 	ctx.drawImage(
 		video,
-		0, 0,//
-		//(vw-largeurSource)/2, 0, largeurSource, vh,	//source
-		//0, 0, cw, ch,					//destination
+		(vw-largeurSource)/2, 0, largeurSource, vh,	//source
+		0, 0, cw, ch,					//destination
 	);
 }
 
