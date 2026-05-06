@@ -13,7 +13,7 @@ export function initColoriage(){
 	const video = document.getElementById("video");
 	//const dessin = document.getElementById("dessin");
 	const ctx = dessin.getContext("2d");
-	ctx.clearRect(0, 0, dessin.width, dessin.height);//
+	ctx.clearRect(0, 0, dessin.width, dessin.height);
 	dessin.width = video.videoWidth;
 	dessin.height = video.videoHeight;
 	ctx.drawImage(video, 0, 0);

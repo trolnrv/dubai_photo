@@ -1,4 +1,4 @@
-import { startCamera, takePhoto } from "./caméra.js";
+import { startCamera, saveDessins } from "./caméra.js";
 import { log } from "./utils.js";
 import { initColoriage, initZoom, showCameraUI, showEditUI, cantdraw } from "./dessin.js";
 
@@ -8,10 +8,10 @@ function initBoutons(){
 		.addEventListener("click", () => {
 			const dessin = document.getElementById("dessin");
 			const ctxDessin = dessin.getContext("2d");
-			ctxDessin.clearRect(0, 0, dessin.width, dessin.height);//
+			ctxDessin.clearRect(0, 0, dessin.width, dessin.height);
 			const photo = document.getElementById("photo");
 			const ctxPhoto = photo.getContext("2d");
-			ctxPhoto.clearRect(0, 0, photo.width, photo.height);//
+			ctxPhoto.clearRect(0, 0, photo.width, photo.height);
 			cantdraw();
 			showCameraUI();
 		});
@@ -35,17 +35,31 @@ function initBoutons(){
 		});
 	document.getElementById("btnValidé")
 		.addEventListener("click", () => {
+			concatainer();//
 			const dessin = document.getElementById("dessin");
 			const ctxDessin = dessin.getContext("2d");
-			ctxDessin.clearRect(0, 0, dessin.width, dessin.height);//
+			ctxDessin.clearRect(0, 0, dessin.width, dessin.height);
 			const photo = document.getElementById("photo");
 			const ctxPhoto = photo.getContext("2d");
-			ctxPhoto.clearRect(0, 0, photo.width, photo.height);//
+			ctxPhoto.clearRect(0, 0, photo.width, photo.height);
 			cantdraw();
 			showCameraUI();
 		});
 }
-//ctx.clearRect(0, 0, canvas.width, canvas.height);
+function concatainer(){
+	const dessin = document.getElementById("dessin");
+	const ctxDessin = dessin.getContext("2d");
+	const photo = document.getElementById("photo");
+	const ctxPhoto = photo.getContext("2d");
+	const ffinal = document.getElementById("final");
+	const ctxfinal = ffinal.getContext("2d");
+	{
+		const video = document.getElementById("video");
+		ffinal.width = video.videoWidth;
+		ffinal.height = video.videoHeight;
+	}
+	ctxfinal.drawImage(ctxPhoto);//ARAJOUTER ctxDessin
+}
 
 
 startCamera();

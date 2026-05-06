@@ -34,6 +34,16 @@ html, body {
   touch-action: none;
   z-index: 7;
 }
+#dessin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  touch-action: none;
+  z-index: 20;
+}
 
 /* overlay UI */
 .ui {
