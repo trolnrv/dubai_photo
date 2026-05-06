@@ -16,8 +16,7 @@ export function initColoriage(){
 	//dessin.width = video.videoWidth;
 	//dessin.height = video.videoHeight;
 	//ctx.drawImage(video, 0, 0);
-	//belleImage("photo");
-	belle("photo");
+	belleImage("photo");
 	let drawing = false;
 	candraw = true;
 	let lastX = null;
@@ -93,8 +92,8 @@ function belleImage(canvasID){//{{{
 	// dessiner avec crop
 	ctx.drawImage(
 		video,
-		sx, sy, sWidth, sHeight,	// source
 		0, 0, cw, ch,			// destination
+		sx, sy, sWidth, sHeight,	// source
 	);
 }//}}}
 
@@ -114,7 +113,7 @@ function belle(canvasID){
 	ctx.drawImage(
 		video, 
 		(vw-largeurSource)/2, 0, largeurSource, vh,	//source
-		0, 0, cw, ch,	//destination
+		0, 0, cw, ch,					//destination
 	);
 }
 
