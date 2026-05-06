@@ -73,6 +73,9 @@ function concatainer(){//{{{
 	);
 }*/
 
+const video = document.getElementById("video");
+video.videoHeight = window.innerHeight;
+video.videoWidth = window.innerWidth;
 const photo = document.getElementById("photo");
 const dessin = document.getElementById("dessin");
 const ffinal = document.getElementById("final");
