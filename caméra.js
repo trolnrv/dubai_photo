@@ -16,7 +16,7 @@ export async function startCamera() {
 	width: { ideal: 1920 },//
 	height: { ideal: 1080 },//
         facingMode: currentFacingMode,
-	advanced: [{ zoom: 0.5 }],
+	//advanced: [{ zoom: 0.5 }],
       }
     });
 
