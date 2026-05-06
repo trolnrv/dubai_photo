@@ -85,6 +85,16 @@ function belleImage(canvasID){//{{{
 		sx = 0;
 		sy = (vh - sHeight) / 2;
 	}
+	const zoom = scale; // ton facteur
+
+	const zoomWidth = sWidth / zoom;
+	const zoomHeight = sHeight / zoom;
+
+	sx += (sWidth - zoomWidth) / 2;
+	sy += (sHeight - zoomHeight) / 2;
+
+	sWidth = zoomWidth;
+	sHeight = zoomHeight;
 
 	// dessiner avec crop
 	ctx.drawImage(
