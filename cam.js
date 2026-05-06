@@ -60,6 +60,7 @@ function concatainer(){
 	}
 	ctxfinal.drawImage(photo, 0, 0);
 	ctxfinal.drawImage(dessin, 0, 0);
+	saveDessins("final", "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo", "Feuille 1");
 }
 
 
