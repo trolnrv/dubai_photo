@@ -107,12 +107,13 @@ function belle(canvasID){
 
 	const ratio = ch / vh;
 	const largeurSource = cw / ratio;
+	const décalage = (vw - largeurSource) / 2;
 	//const largeurSource = vh * (cw/ch);
 	console.log(`ratio: ${ratio}\nlargeurSource: ${largeurSource}`);
 	ctx.drawImage(
 		video,
-		0, 0, vw, vh,	//source
-		0, 0, cw, ch,					//destination
+		décalage, 0, largeurSource, vh,	//source
+		0, 0, cw, ch,			//destination
 	);
 }
 
