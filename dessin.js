@@ -45,7 +45,7 @@ export function initColoriage(){
 		const y = (touch.clientY - rect.top) * (dessin.height / rect.height);
 		// dessin
 		ctx.strokeStyle = "red";
-		const grosFeutre = true;
+		const grosFeutre = false;
 		if(grosFeutre){
 			ctx.lineWidth = 10;
 			ctx.globalAlpha = 0.8;
