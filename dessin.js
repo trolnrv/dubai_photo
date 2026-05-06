@@ -10,12 +10,13 @@ export function initColoriage(){
 	console.log(`id: ${id}, feuille: ${feuille}`);
 	//
 	const video = document.getElementById("video");
-	const dessin = document.getElementById("dessin");
-	const ctx = dessin.getContext("2d");
-	ctx.clearRect(0, 0, dessin.width, dessin.height);
-	dessin.width = video.videoWidth;
-	dessin.height = video.videoHeight;
-	ctx.drawImage(video, 0, 0);
+	//const dessin = document.getElementById("dessin");
+	//const ctx = dessin.getContext("2d");
+	//ctx.clearRect(0, 0, dessin.width, dessin.height);
+	//dessin.width = video.videoWidth;
+	//dessin.height = video.videoHeight;
+	//ctx.drawImage(video, 0, 0);
+	//belleImage("photo");
 	belleImage("photo");
 	let drawing = false;
 	candraw = true;
@@ -96,6 +97,17 @@ function belleImage(canvasID){//{{{
 		0, 0, cw, ch            // destination
 	);
 }//}}}
+
+function belle(canvasID){
+	const video = document.getElementById("video");
+	const canvas = document.getElementById(canvasID);
+	const ctx = canvas.getContext("2d");
+
+	ctx.drawImage(
+		video,
+		0, 0, 
+	);
+}
 
 let scale = 1;
 let lastDistance = null;
