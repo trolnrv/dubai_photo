@@ -29,8 +29,8 @@ function initBoutons(){
 			const ctx = photo.getContext("2d");
 			photo.width = video.videoWidth;
 			photo.height = video.videoHeight;
-			//ctx.drawImage(video, 0, 0);
-			belleImage();
+			ctx.drawImage(video, 0, 0);//
+			//belleImage();
 			initColoriage();
 			showEditUI();
 		});

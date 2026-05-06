@@ -23,6 +23,7 @@ html, body {
 
   touch-action: none;
   z-index: 5;
+  object-fit: cover;
 }
 #dessin {
   position: fixed;
