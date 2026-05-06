@@ -13,7 +13,7 @@ export function initColoriage(){
 	const dessin = document.getElementById("dessin");
 	const ctx = dessin.getContext("2d");
 	ctx.clearRect(0, 0, dessin.width, dessin.height);
-	belle("photo");
+	belleImage("photo");
 	let drawing = false;
 	candraw = true;
 	let lastX = null;
