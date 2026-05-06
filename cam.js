@@ -85,5 +85,15 @@ startCamera();
 initBoutons();
 showCameraUI();
 
+const video = document.getElementById("video");
+const photo = document.getElementById("photo");
+const dessin = document.getElementById("dessin");
+const ffinal = document.getElementById("final");
+photo.width = video.videoWidth;
+photo.height = video.videoHeight;
+dessin.width = video.videoWidth;
+dessin.height = video.videoHeight;
+ffinal.width = video.videoWidth;
+ffinal.height = video.videoHeight;
 
 initZoom();

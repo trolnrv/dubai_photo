@@ -110,12 +110,12 @@ function belle(canvasID){
 	const ch = canvas.height;
 
 	const ratio = ch / vh;
-	let largeurSource = cw / ratio;
+	const largeurSource = cw / ratio;
 	//const largeurSource = vh * (cw/ch);
 	console.log(`ratio: ${ratio}\nlargeurSource: ${largeurSource}`);
 	ctx.drawImage(
 		video, 
-		0, /*(vw-largeurSource)/2,*/ 0, largeurSource, vh,	//source
+		(vw-largeurSource)/2, 0, largeurSource, vh,	//source
 		0, 0, cw, ch,					//destination
 	);
 }
