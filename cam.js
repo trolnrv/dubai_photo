@@ -52,15 +52,16 @@ function concatainer(){
 	const photo = document.getElementById("photo");
 	const ctxPhoto = photo.getContext("2d");
 	const ffinal = document.getElementById("final");
-	const ctxfinal = ffinal.getContext("2d");
+	const ctxFinal = ffinal.getContext("2d");
 	{
 		const video = document.getElementById("video");
 		ffinal.width = video.videoWidth;
 		ffinal.height = video.videoHeight;
 	}
-	ctxfinal.drawImage(photo, 0, 0);
-	ctxfinal.drawImage(dessin, 0, 0);
+	ctxFinal.drawImage(photo, 0, 0);
+	ctxFinal.drawImage(dessin, 0, 0);
 	saveDessins("final", "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo", "Feuille 1");
+	ctxFinal.clearRect(0, 0, dessin.width, dessin.height);
 }
 
 

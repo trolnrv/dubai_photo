@@ -42,7 +42,7 @@ html, body {
   height: 100vh;
 
   touch-action: none;
-  z-index: 8;/*A changer*/
+  z-index: 0;
 }
 
 /* overlay UI */
