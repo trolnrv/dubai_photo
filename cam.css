@@ -12,9 +12,7 @@ html, body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  /*object-fit: cover;*/
-  object-fit: contain;
-  background: black;
+  object-fit: cover;
 }
 #photo {
   position: fixed;
