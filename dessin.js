@@ -8,15 +8,15 @@ export function initColoriage(){
 	const id = suffixe.split("/")[0];
 	const feuille = decodeURIComponent(suffixe.split("/")[1]);
 	console.log(`id: ${id}, feuille: ${feuille}`);
-	//takePhoto(id, feuille);
 	//
 	const video = document.getElementById("video");
 	//const dessin = document.getElementById("dessin");
-	const ctx = dessin.getContext("2d");
-	ctx.clearRect(0, 0, dessin.width, dessin.height);
-	dessin.width = video.videoWidth;
-	dessin.height = video.videoHeight;
-	ctx.drawImage(video, 0, 0);
+	//const ctx = dessin.getContext("2d");
+	//ctx.clearRect(0, 0, dessin.width, dessin.height);
+	//dessin.width = video.videoWidth;
+	//dessin.height = video.videoHeight;
+	//ctx.drawImage(video, 0, 0);
+	belleImage();
 	let drawing = false;
 	candraw = true;
 	let lastX = null;
@@ -58,6 +58,44 @@ export function initColoriage(){
 		lastY = y;
 	}, { passive: false });
 }
+function belleImage(){//{{{
+	const video = document.getElementById("video");
+	const photo = document.getElementById("photo");
+	const ctx = photo.getContext("2d");
+
+	const vw = video.videoWidth;
+	const vh = video.videoHeight;
+
+	const cw = photo.width;
+	const ch = photo.height;
+
+	// ratio
+	const videoRatio = vw / vh;
+	const photoRatio = cw / ch;
+
+	let sx, sy, sWidth, sHeight;
+
+	if (videoRatio > photoRatio) {
+		// vidéo trop large → crop horizontal
+		sHeight = vh;
+		sWidth = vh * photoRatio;
+		sx = (vw - sWidth) / 2;
+		sy = 0;
+	} else {
+		// vidéo trop haute → crop vertical
+		sWidth = vw;
+		sHeight = vw / photoRatio;
+		sx = 0;
+		sy = (vh - sHeight) / 2;
+	}
+
+	// dessiner avec crop
+	ctx.drawImage(
+		video,
+		sx, sy, sWidth, sHeight, // source
+		0, 0, cw, ch            // destination
+	);
+}//}}}
 
 let scale = 1;
 let lastDistance = null;
