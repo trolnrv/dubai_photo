@@ -24,13 +24,16 @@ function initBoutons(){
 			showEditUI();
 	document.getElementById("btnPhoto")
 		.addEventListener("click", () => {
-			//const video = document.getElementById("video");
-			//const photo = document.getElementById("photo");
-			//const ctx = photo.getContext("2d");
-			//photo.width = video.videoWidth;
-			//photo.height = video.videoHeight;
-			//ctx.drawImage(video, 0, 0);//
-			//belleImage();
+			const video = document.getElementById("video");
+			const photo = document.getElementById("photo");
+			const dessin = document.getElementById("dessin");
+			const ffinal = document.getElementById("final");
+			photo.width = video.videoWidth;
+			photo.height = video.videoHeight;
+			dessin.width = video.videoWidth;
+			dessin.height = video.videoHeight;
+			ffinal.width = video.videoWidth;
+			ffinal.height = video.videoHeight;
 			initColoriage();
 			showEditUI();
 		});
@@ -84,16 +87,5 @@ function concatainer(){//{{{
 startCamera();
 initBoutons();
 showCameraUI();
-
-const video = document.getElementById("video");
-const photo = document.getElementById("photo");
-const dessin = document.getElementById("dessin");
-const ffinal = document.getElementById("final");
-photo.width = video.videoWidth;
-photo.height = video.videoHeight;
-dessin.width = video.videoWidth;
-dessin.height = video.videoHeight;
-ffinal.width = video.videoWidth;
-ffinal.height = video.videoHeight;
 
 initZoom();
