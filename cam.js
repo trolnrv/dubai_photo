@@ -29,8 +29,8 @@ function initBoutons(){
 			const ctx = photo.getContext("2d");
 			photo.width = video.videoWidth;
 			photo.height = video.videoHeight;
-			ctx.drawImage(video, 0, 0);//
-			//belleImage();
+			//ctx.drawImage(video, 0, 0);
+			belleImage();//
 			initColoriage();
 			showEditUI();
 		});
@@ -47,7 +47,8 @@ function initBoutons(){
 			showCameraUI();
 		});
 }
-function concatainer(){
+
+function concatainer(){//{{{
 	const dessin = document.getElementById("dessin");
 	const ctxDessin = dessin.getContext("2d");
 	const photo = document.getElementById("photo");
@@ -63,8 +64,9 @@ function concatainer(){
 	ctxFinal.drawImage(dessin, 0, 0);
 	saveDessins("final", "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo", "Feuille 1");
 	ctxFinal.clearRect(0, 0, dessin.width, dessin.height);
-}
-function belleImage(){
+}//}}}
+
+function belleImage(){//{{{
 	const video = document.getElementById("video");
 	const photo = document.getElementById("photo");
 	const ctx = photo.getContext("2d");
@@ -101,7 +103,7 @@ function belleImage(){
 		sx, sy, sWidth, sHeight, // source
 		0, 0, cw, ch            // destination
 	);
-}
+}//}}}
 
 
 startCamera();
