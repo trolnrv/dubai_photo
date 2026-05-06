@@ -10,12 +10,12 @@ export function initColoriage(){
 	console.log(`id: ${id}, feuille: ${feuille}`);
 	//
 	const video = document.getElementById("video");
-	//const dessin = document.getElementById("dessin");
-	//const ctx = dessin.getContext("2d");
-	//ctx.clearRect(0, 0, dessin.width, dessin.height);
-	//dessin.width = video.videoWidth;
-	//dessin.height = video.videoHeight;
-	//ctx.drawImage(video, 0, 0);
+	const dessin = document.getElementById("dessin");
+	const ctx = dessin.getContext("2d");
+	ctx.clearRect(0, 0, dessin.width, dessin.height);
+	dessin.width = video.videoWidth;
+	dessin.height = video.videoHeight;
+	ctx.drawImage(video, 0, 0);
 	belleImage("photo");
 	let drawing = false;
 	candraw = true;
