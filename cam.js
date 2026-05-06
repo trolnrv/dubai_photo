@@ -60,31 +60,23 @@ function concatainer(){//{{{
 }//}}}
 
 
-/*function belle(){//AFINIR
-	const video = document.getElementById("video");
+
+function alechelle(){
 	const photo = document.getElementById("photo");
-	const ctx = photo.getContext("2d");
-
-	const ratio = video.videoHeight / photo.height; //
-	ctx.drawImage(
-		video,
-		*, 0, *, video.videoHeight,		// source
-		0, 0, photo.width, photo.height,	// destination
-	);
-}*/
-
-const photo = document.getElementById("photo");
-const dessin = document.getElementById("dessin");
-const ffinal = document.getElementById("final");
-photo.width = window.innerWidth;
-photo.height = window.innerHeight;
-dessin.width = window.innerWidth;
-dessin.height = window.innerHeight;
-ffinal.width = window.innerWidth;
-ffinal.height = window.innerHeight;
+	const dessin = document.getElementById("dessin");
+	const ffinal = document.getElementById("final");
+	photo.width = window.innerWidth;
+	photo.height = window.innerHeight;
+	dessin.width = window.innerWidth;
+	dessin.height = window.innerHeight;
+	ffinal.width = window.innerWidth;
+	ffinal.height = window.innerHeight;
+}
 
 startCamera();
 initBoutons();
 showCameraUI();
 
 initZoom();
+
+document.getElementById("video").addEventListener("loadedmetadata", alechelle);

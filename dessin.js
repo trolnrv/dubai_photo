@@ -94,7 +94,7 @@ function belleImage(canvasID){//{{{
 	);
 }//}}}
 
-function belle(canvasID){
+function belle(canvasID){//{{{
 	const video = document.getElementById("video");
 	const canvas = document.getElementById(canvasID);
 	const ctx = canvas.getContext("2d");
@@ -115,7 +115,7 @@ function belle(canvasID){
 		décalage, 0, largeurSource, vh,	//source
 		0, 0, cw, ch,			//destination
 	);
-}
+}//}}}
 
 let scale = 1;
 let lastDistance = null;
