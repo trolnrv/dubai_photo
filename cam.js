@@ -34,6 +34,11 @@ function initBoutons(){
 			//dessin.height = video.videoHeight;
 			//ffinal.width = video.videoWidth;
 			//ffinal.height = video.videoHeight;
+			////const video = document.getElementById("video");
+			////const photo = document.getElementById("photo");
+			////const ctx = photo.getContext("2d");
+			////photo.width = video.videoWidth;
+			////photo.height = video.videoHeight;
 			initColoriage();
 			showEditUI();
 		});
