@@ -16,7 +16,7 @@ export function initColoriage(){
 	//dessin.width = video.videoWidth;
 	//dessin.height = video.videoHeight;
 	//ctx.drawImage(video, 0, 0);
-	belleImage();
+	belleImage("photo");
 	let drawing = false;
 	candraw = true;
 	let lastX = null;
@@ -58,33 +58,33 @@ export function initColoriage(){
 		lastY = y;
 	}, { passive: false });
 }
-function belleImage(){//{{{
+function belleImage(canvasID){//{{{
 	const video = document.getElementById("video");
-	const photo = document.getElementById("photo");
-	const ctx = photo.getContext("2d");
+	const canvas = document.getElementById(canvasID);
+	const ctx = canvas.getContext("2d");
 
 	const vw = video.videoWidth;
 	const vh = video.videoHeight;
 
-	const cw = photo.width;
-	const ch = photo.height;
+	const cw = canvas.width;
+	const ch = canvas.height;
 
 	// ratio
 	const videoRatio = vw / vh;
-	const photoRatio = cw / ch;
+	const canvasRatio = cw / ch;
 
 	let sx, sy, sWidth, sHeight;
 
-	if (videoRatio > photoRatio) {
+	if (videoRatio > canvasRatio) {
 		// vidéo trop large → crop horizontal
 		sHeight = vh;
-		sWidth = vh * photoRatio;
+		sWidth = vh * canvasRatio;
 		sx = (vw - sWidth) / 2;
 		sy = 0;
 	} else {
 		// vidéo trop haute → crop vertical
 		sWidth = vw;
-		sHeight = vw / photoRatio;
+		sHeight = vw / canvasRatio;
 		sx = 0;
 		sy = (vh - sHeight) / 2;
 	}
