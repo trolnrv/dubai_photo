@@ -13,10 +13,6 @@ export function initColoriage(){
 	const dessin = document.getElementById("dessin");
 	const ctx = dessin.getContext("2d");
 	ctx.clearRect(0, 0, dessin.width, dessin.height);
-	//dessin.width = video.videoWidth;
-	//dessin.height = video.videoHeight;
-	//ctx.drawImage(video, 0, 0);
-	//belleImage("photo");
 	belle("photo");
 	let drawing = false;
 	candraw = true;
@@ -115,7 +111,7 @@ function belle(canvasID){
 	console.log(`ratio: ${ratio}\nlargeurSource: ${largeurSource}`);
 	ctx.drawImage(
 		video,
-		0, 0, vw, vh,	//source
+		0, 0, largeurSource, vh,	//source
 		0, 0, cw, ch,					//destination
 	);
 }
