@@ -2,13 +2,12 @@ function MatGetFolder(id){
 	try { return DriveApp.getFolderById(id); } catch (e) { return undefined; }
 }
 function compléter(value){
-	//
 }
 
 
 
 function doPost(e) {
-  const data = JSON.parse(e.posrData.contents);
+  const data = JSON.parse(e.postData.contents);
 
 
   if (data.type == "photo"){
