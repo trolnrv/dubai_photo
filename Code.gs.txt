@@ -1,3 +1,12 @@
+function MatGetFolder(id){
+	try { return DriveApp.getFolderById(id); } catch (e) { return undefined; }
+}
+function compléter(value){
+	//
+}
+
+
+
 function doPost(e) {
   const data = JSON.parse(e.posrData.contents);
 
@@ -34,26 +43,13 @@ function doPost(e) {
   } 
 
 
-  if (data.type == "MAJfichier"){
-      const props = PropertiesService.getScriptProperties();
-      props.setProperty("fichier", data.nom);
-      return ContentService.createTextOutput(data.nom);
-  }
-
-
-  if (data.type == "MAJfeuille"){
-      const props = PropertiesService.getScriptProperties();
-      props.setProperty("feuille", data.nom);
-      return ContentService.createTextOutput(data.nom);
-  }
-
-
   if (data.type == "upload") {
     const props = PropertiesService.getScriptProperties();
 
     const key = data.key;
 
     const value = JSON.stringify(data.content);
+    compléter(value);
 
     props.setProperty(key, value);
 
@@ -76,7 +72,7 @@ function doPost(e) {
 
 }
 
-function doGet() {{{{
+function doGet() {
   const randomText = "TEST_FILE_" + new Date().toISOString() + "_" + Math.random();
 
   const blob = Utilities.newBlob(
@@ -94,4 +90,4 @@ function doGet() {{{{
       url: file.getUrl()
     })
   ).setMimeType(ContentService.MimeType.JSON);
-}}}}
+}

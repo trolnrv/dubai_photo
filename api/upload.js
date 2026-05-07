@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   console.log("REQ RECEIVED");
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwDhGqqkXwn7ynCAUaUPb-PL35VOw93W7gTuekRDTUeTRxUWOACftg9NSH20JgC_OfyZw/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycby85HdgipqUZSBYIklW3iEY_h23RYUN4qacLKHeAtCnHBd7_LuQyE1nX4NMtOy41RqgVw/exec";
 	// Papa: https://script.google.com/macros/s/AKfycbxIuNF-bBtgZHiCE8b59ZmA3b-3cpYIt3IS4aIhL3w04PXRfpzZYEVQPzP21S9pPrQZ/exec
 
   if (req.body.type == "photo"){
