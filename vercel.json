@@ -1,7 +1,10 @@
 {
-  "rewrites": [
-    {
-	    "source": "/cam/(.*)", "destination": "/cam.html"
-    }
-  ]
+	"rewrites": [
+		{
+			"source": "/tout", "destination": "/tout.html"
+		},
+		{
+			"source": "/cam/(.*)", "destination": "/cam.html"
+		},
+	]
 }
