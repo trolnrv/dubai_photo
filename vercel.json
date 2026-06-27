@@ -5,6 +5,6 @@
 		},
 		{
 			"source": "/cam/(.*)", "destination": "/cam.html"
-		},
+		}
 	]
 }
