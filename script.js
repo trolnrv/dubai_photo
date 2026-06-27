@@ -13,6 +13,10 @@ function initBoutons(){
 		.addEventListener("click", startCamera);
 	document.getElementById("btnPhoto")
 		.addEventListener("click", () => {takePhoto("canvas", "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo", "Feuille 1");});
+	document.getElementById("btnTout")
+		.addEventListener("click", () => {
+			window.open("tout", "_blank", "noopener,noreferrer"); // 🔥 ouvre l'URL
+		});
 }
 
 
