@@ -1,0 +1,15 @@
+function create(htmlStr) {
+    var frag = document.createDocumentFragment(),
+        temp = document.createElement('div');
+    temp.innerHTML = htmlStr;
+    while (temp.firstChild) {
+        frag.appendChild(temp.firstChild);
+    }
+    return frag;
+}
+
+const boutons = document.getElementById("booutons");
+const x = "azer";
+boutons.appendChild(create(
+	`<button>${x}</button>`
+));
