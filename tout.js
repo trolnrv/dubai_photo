@@ -36,4 +36,4 @@ ajouterBouton("🔄Charger les nouveaux fichiers🔄", () => {
 		bouton.remove();
 	});
 });
-await charger();
+let _ = await charger();
