@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  console.log("REQ RECEIVED");
+  console.log("upload || REQ RECEIVED");
   const scriptURL = "https://script.google.com/macros/s/AKfycbzK11pxN1bIGbJNetxOWebg3HbPfpForV-duUQTnBC6LVPfP_5E3VZirYT_UVU8WEGGOQ/exec";
 	// Papa: https://script.google.com/macros/s/AKfycbxIuNF-bBtgZHiCE8b59ZmA3b-3cpYIt3IS4aIhL3w04PXRfpzZYEVQPzP21S9pPrQZ/exec
 
@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 	  try {
 	    const { type, image, timestamp, fichier, feuille } = req.body;
 
-	    console.log("IMAGE SIZE:", image?.length);
+	    console.log("upload || IMAGE SIZE:", image?.length);
 
 	    const response = await fetch(
 		scriptURL,
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
 	    const text = await response.text();
 
-	    console.log("APPS SCRIPT RESPONSE:", text);
+	    console.log("upload || APPS SCRIPT RESPONSE:", text);
 
 	    return res.status(200).json({
 	      ok: true,
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 	    });
 
 	  } catch (e) {
-	    console.error("ERROR:", e);
+	    console.error("upload || ERROR:", e);
 
 	    return res.status(500).json({
 	      ok: false,
@@ -53,7 +53,7 @@ export default async function handler(req, res) {
 
 	    const text = await response.text();
 
-	    console.log("APPS SCRIPT RESPONSE:", text);
+	    console.log("upload || APPS SCRIPT RESPONSE:", text);
 
 	    return res.status(200).json({
 	      ok: true,
@@ -61,7 +61,7 @@ export default async function handler(req, res) {
 	    });
 
 	  } catch (e) {
-	    console.error("ERROR:", e);
+	    console.error("upload || ERROR:", e);
 
 	    return res.status(500).json({
 	      ok: false,
@@ -83,12 +83,12 @@ export default async function handler(req, res) {
 			);
 			const data = await response.json(); // 👈 parse direct
 
-			console.log("APPS SCRIPT RESPONSE:", data);
+			console.log("upload || APPS SCRIPT RESPONSE:", data);
 
 			return res.status(200).json(data); // 👈 juste la data
 
 		} catch (e) {
-			console.error("ERROR:", e);
+			console.error("upload || ERROR:", e);
 
 			return res.status(500).json({
 				ok: false,

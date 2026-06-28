@@ -1,7 +1,7 @@
 import { log } from "./utils.js";
 
 export async function refresh(content) {
-  log("On refresh.");
+  log("réseau || On refresh.");
 
   const res = await fetch("/api/upload", {
     method: "POST",
@@ -16,11 +16,11 @@ export async function refresh(content) {
 
   const data = await res.json().catch(() => ({}));
 
-  log("📨 Response: " + JSON.stringify(data));
+  log("réseau || 📨 Response: " + JSON.stringify(data));
   return data;
 }
 export async function upload(content) {
-  log("On upload.");
+  log("réseau || On upload.");
 
   const res = await fetch("/api/upload", {
     method: "POST",
@@ -35,12 +35,12 @@ export async function upload(content) {
 
   const data = await res.json().catch(() => ({}));
 
-  log("📨 Response: " + JSON.stringify(data));
+  log("réseau || 📨 Response: " + JSON.stringify(data));
   return data;
 }
 
 export async function download() {
-  log("On download.");
+  log("réseau || On download.");
 
   const res = await fetch("/api/upload", {
     method: "POST",
@@ -54,6 +54,6 @@ export async function download() {
 
   const data = await res.json().catch(() => ({}));
 
-  log("📨 Response: " + JSON.stringify(data));
+  log("réseau || 📨 Response: " + JSON.stringify(data));
   return data;
 }
