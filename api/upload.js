@@ -43,12 +43,12 @@ export default async function handler(req, res) {
 	    const response = await fetch(
 		scriptURL,
 		    {
-		method: "POST",
-		headers: {
-		  "Content-Type": "application/json"
-		},
+			    method: "POST",
+			    headers: {
+				    "Content-Type": "application/json"
+			    },
 			    body: JSON.stringify({ type: "upload", key: "tout", content: req.body.content, })
-	      }
+		    }
 	    );
 
 	    const text = await response.text();
@@ -78,9 +78,11 @@ export default async function handler(req, res) {
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body: JSON.stringify({ type: "download", key: "tout" })
+					body: JSON.stringify({type: "download", key: "tout",})
 				}
 			);
+			console.log("upload || ON ENVOIE");
+
 			const data = await response.json(); // 👈 parse direct
 
 			console.log("upload || APPS SCRIPT RESPONSE:", data);
