@@ -1,74 +1,74 @@
 export default async function handler(req, res) {
-  console.log("upload || REQ RECEIVED");
-  const scriptURL = "https://script.google.com/macros/s/AKfycbzK11pxN1bIGbJNetxOWebg3HbPfpForV-duUQTnBC6LVPfP_5E3VZirYT_UVU8WEGGOQ/exec";
+	console.log("upload || REQ RECEIVED");
+	const scriptURL = "https://script.google.com/macros/s/AKfycbzK11pxN1bIGbJNetxOWebg3HbPfpForV-duUQTnBC6LVPfP_5E3VZirYT_UVU8WEGGOQ/exec";
 	// Papa: https://script.google.com/macros/s/AKfycbxIuNF-bBtgZHiCE8b59ZmA3b-3cpYIt3IS4aIhL3w04PXRfpzZYEVQPzP21S9pPrQZ/exec
 
-  if (req.body.type == "photo"){
-	  try {
-	    const { type, image, timestamp, fichier, feuille } = req.body;
+	if (req.body.type == "photo"){
+		try {
+			const { type, image, timestamp, fichier, feuille } = req.body;
 
-	    console.log("upload || IMAGE SIZE:", image?.length);
+			console.log("upload || IMAGE SIZE:", image?.length);
 
-	    const response = await fetch(
-		scriptURL,
-		{
-		method: "POST",
-		headers: {
-		  "Content-Type": "application/json"
-		},
-		body: JSON.stringify({ type, image, timestamp, fichier, feuille })
-	        }
-	    );
+			const response = await fetch(
+				scriptURL,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({ type, image, timestamp, fichier, feuille })
+				}
+			);
 
-	    const text = await response.text();
+			const text = await response.text();
 
-	    console.log("upload || APPS SCRIPT RESPONSE:", text);
+			console.log("upload || APPS SCRIPT RESPONSE:", text);
 
-	    return res.status(200).json({
-	      ok: true,
-	      fromGoogle: text
-	    });
+			return res.status(200).json({
+				ok: true,
+				fromGoogle: text
+			});
 
-	  } catch (e) {
-	    console.error("upload || ERROR:", e);
+		} catch (e) {
+			console.error("upload || ERROR:", e);
 
-	    return res.status(500).json({
-	      ok: false,
-	      error: e.message
-	    });
-	  }
-  }
-  if (req.body.type == "upload"){
-	  try {
-	    const response = await fetch(
-		scriptURL,
-		    {
-			    method: "POST",
-			    headers: {
-				    "Content-Type": "application/json"
-			    },
-			    body: JSON.stringify({ type: "upload", key: "tout", content: req.body.content, })
-		    }
-	    );
+			return res.status(500).json({
+				ok: false,
+				error: e.message
+			});
+		}
+	}
+	if (req.body.type == "upload"){
+		try {
+			const response = await fetch(
+				scriptURL,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({ type: "upload", key: "tout", content: req.body.content, })
+				}
+			);
 
-	    const text = await response.text();
+			const text = await response.text();
 
-	    console.log("upload || APPS SCRIPT RESPONSE:", text);
+			console.log("upload || APPS SCRIPT RESPONSE:", text);
 
-	    return res.status(200).json({
-	      ok: true,
-	      fromGoogle: text
-	    });
+			return res.status(200).json({
+				ok: true,
+				fromGoogle: text
+			});
 
-	  } catch (e) {
-	    console.error("upload || ERROR:", e);
+		} catch (e) {
+			console.error("upload || ERROR:", e);
 
-	    return res.status(500).json({
-	      ok: false,
-	      error: e.message
-	    });
-	  }
-  }
+			return res.status(500).json({
+				ok: false,
+				error: e.message
+			});
+		}
+	}
 	if (req.body.type == "download"){
 		try {
 			console.log("upload || ON ENVOIE");
