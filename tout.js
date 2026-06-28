@@ -7,9 +7,9 @@ function ajouterBouton(message, fonction){
 }
 //ajouterBouton("download", download);
 ajouterBouton("🔄", () => {
-	
+	refresh();
 });
-const fichiers = download().fichiers;
+const fichiers = download().await.fichiers;
 console.log(fichiers);
 for (let fichier in fichiers){
 	if (fichiers[fichier].type == "D"){
