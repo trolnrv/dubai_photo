@@ -46,7 +46,7 @@ export async function download() {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      type: "download"
+      type: "download",
     })
   });
 
