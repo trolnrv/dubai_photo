@@ -11,13 +11,13 @@ ajouterBouton("🔄", () => {
 });
 const fichiers = download().fichiers;
 for (let fichier in fichiers){
-	if (fichier.type == "D"){
+	if (fichiers[fichier].type == "D"){
 		ajouterBouton(fichier.nom + "📁", refresh);
 	}
-	if (fichier.type == "F"){
+	if (fichiers[fichier].type == "F"){
 		ajouterBouton(fichier.nom + "📄", refresh);
 	}
-	if (fichier.type == "S"){
+	if (fichiers[fichier].type == "S"){
 		ajouterBouton(fichier.nom + "📊", refresh);
 	}
 }
