@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
 	console.log("upload || REQ RECEIVED");
-	const scriptURL = "https://script.google.com/macros/s/AKfycbymlwhh7sHWmVE4fR3cXpHqfjFjkQpCAsWRoqa21zFzyj6W6vNS973k-lqqYHNgyMXadg/exec";
+	const scriptURL = "https://script.google.com/macros/s/AKfycbxTmB8FaRrgqE87IH4Ghn1TQNqQ5_jxP7gHAmIlX4JUYOdZEpwIJ7RW_WvF2w3FyoK1xg/exec";
 	// Papa: https://script.google.com/macros/s/AKfycbxIuNF-bBtgZHiCE8b59ZmA3b-3cpYIt3IS4aIhL3w04PXRfpzZYEVQPzP21S9pPrQZ/exec
 
 	const type = req.body.type;
