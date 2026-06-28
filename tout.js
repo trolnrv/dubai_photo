@@ -10,6 +10,7 @@ ajouterBouton("🔄", () => {
 	
 });
 const fichiers = download().fichiers;
+console.log(fichiers);
 for (let fichier in fichiers){
 	if (fichiers[fichier].type == "D"){
 		ajouterBouton(fichiers[fichier].nom + "📁", refresh);
