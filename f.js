@@ -29,7 +29,7 @@ async function charger(){
 			await rienupload(window.location.pathname);
 			await recharger(false);
 		});
-	};
+	}
 	else {ajouterBouton("🏠Voir tous les dossiers🏠", () => {
 		window.location.href = "/tout";
 	});}
