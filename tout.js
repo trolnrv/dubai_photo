@@ -1,6 +1,9 @@
-let bouton = document.createElement('button');
-bouton.innerText = 'Can you click me?';
-bouton.addEventListener('click', () => {
-	console.log('Oh, you clicked me!');
-});
-document.body.appendChild(bouton);
+import { download, refresh } from "./réseau.js";
+function ajouterBouton(message, fonction){
+	let bouton = document.createElement('button');
+	bouton.innerText = message;
+	bouton.addEventListener('click', fonction);
+	document.body.appendChild(bouton);
+}
+ajouterBouton("download", download);
+ajouterBouton("refresh", refresh);
