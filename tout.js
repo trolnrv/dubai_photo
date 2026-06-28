@@ -14,11 +14,16 @@ async function charger(){
 	const preurl = riendownload();
 	const data = await predata;
 	url = await preurl;
-	ajouterBouton("🔄Charger les nouveaux fichiers🔄", recharger);
-	if (url!=window.location.pathname){ajouterBouton("⬅️Retourner au dossier épinglé⬅️,",
-		() => {window.location.href = url;}
-	)};
-	ajouterBouton
+	ajouterBouton("🔄Charger les nouveaux fichiers🔄", async ()=>{recharger(true);});
+	if (url!=window.location.pathname){
+		ajouterBouton("⬅️Retourner au dossier de référence⬅️,",
+		() => {window.location.href = url;});
+		ajouterBouton("📍Définir comme dossier de référence📍",
+		async () => {
+			await rienupload(window.location.pathname);
+			await etRefresh(false);
+		};
+	};
 	let fichiers = data.fichiers;
 	console.log(fichiers);
 	for (let fichier in fichiers){
@@ -39,8 +44,8 @@ async function charger(){
 		}
 	}
 }
-async function recharger(){
-	await refresh();
+async function recharger(etRefresh){
+	if (etRefresh){await refresh();}
 	document.querySelectorAll("button").forEach((bouton) => {
 		bouton.remove();
 	});
