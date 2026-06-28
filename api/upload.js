@@ -71,6 +71,7 @@ export default async function handler(req, res) {
   }
 	if (req.body.type == "download"){
 		try {
+			console.log("upload || ON ENVOIE");
 			const response = await fetch(
 				scriptURL,
 				{
@@ -81,7 +82,6 @@ export default async function handler(req, res) {
 					body: JSON.stringify({type: "download", key: "tout",})
 				}
 			);
-			console.log("upload || ON ENVOIE");
 
 			const data = await response.json(); // 👈 parse direct
 
