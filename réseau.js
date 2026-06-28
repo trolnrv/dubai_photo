@@ -55,3 +55,41 @@ export async function refresh() {
 	console.log("réseau || 📨 Response: " + JSON.stringify(data));
 	return data;
 }
+
+export async function rienupload(content) {
+	console.log("réseau || On rienupload.");
+
+	const res = await fetch("/api/upload", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			type: "rienupload",
+			content: content,
+		})
+	});
+
+	const data = await res.json().catch(() => ({}));
+
+	console.log("réseau || 📨 Response: " + JSON.stringify(data));
+	return data;
+}
+export async function riendownload() {
+	console.log("réseau || On riendownload.");
+
+	const res = await fetch("/api/upload", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			type: "riendownload",
+		})
+	});
+
+	const data = await res.json().catch(() => ({}));
+
+	console.log("réseau || 📨 Response: " + JSON.stringify(data));
+	return data;
+}

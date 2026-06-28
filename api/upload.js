@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 			});
 		}
 	}
-	if (type == "upload"){
+	if (type == "rienupload"){
 		try {
 			const response = await fetch(
 				scriptURL,
@@ -48,13 +48,13 @@ export default async function handler(req, res) {
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body: JSON.stringify({ type: "upload", key: "tout", content: req.body.content, })
+					body: JSON.stringify({ type: "upload", key: "rien", content: req.body.content, })
 				}
 			);
 
 			const text = await response.text();
 
-			console.log("upload || APPS SCRIPT RESPONSE:", text);
+			console.log("rienupload || APPS SCRIPT RESPONSE:", text);
 
 			return res.status(200).json({
 				ok: true,
@@ -70,7 +70,7 @@ export default async function handler(req, res) {
 			});
 		}
 	}
-	if (type == "download" || type == "refresh"){
+	if (type == "riendownload"){
 		try {
 			console.log("upload || ON ENVOIE");
 			const response = await fetch(
@@ -80,7 +80,7 @@ export default async function handler(req, res) {
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body: JSON.stringify({type: type, key: "tout",})
+					body: JSON.stringify({type: type, key: "rien",})
 				}
 			);
 
@@ -91,7 +91,7 @@ export default async function handler(req, res) {
 			return res.status(200).json(data); // 👈 juste la data
 
 		} catch (e) {
-			console.error("upload || ERROR:", e);
+			console.error("rienupload || ERROR:", e);
 
 			return res.status(500).json({
 				ok: false,
