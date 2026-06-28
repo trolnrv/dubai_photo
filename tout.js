@@ -22,7 +22,7 @@ async function charger(){
 		async () => {
 			await rienupload(window.location.pathname);
 			await etRefresh(false);
-		};
+		});
 	};
 	let fichiers = data.fichiers;
 	console.log(fichiers);
