@@ -22,7 +22,7 @@ async function charger(){
 	let fichierID = getPathsInfos();
 	for (let feuille in fichiers[fichierID]){
 		ajouterBouton(feuille + "📊", () => {
-			aller(`/cam/${child}`);
+			aller(`/cam/${feuille}`);
 		});
 	}
 }
