@@ -1,6 +1,6 @@
-let boutton = document.createElement('button');
-boutton.innerText = 'Can you click me?';
-boutton.addEventListener('click', () => {
+let bouton = document.createElement('button');
+bouton.innerText = 'Can you click me?';
+bouton.addEventListener('click', () => {
 	console.log('Oh, you clicked me!');
 });
-document.body.appendChild(button);
+document.body.appendChild(bouton);
