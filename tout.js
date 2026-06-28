@@ -10,7 +10,7 @@ ajouterBouton("🔄", () => {
 	refresh();
 });
 const data = await download();
-fichiers = data.fichiers;
+let fichiers = data.fichiers;
 console.log(fichiers);
 for (let fichier in fichiers){
 	if (fichiers[fichier].type == "D"){
