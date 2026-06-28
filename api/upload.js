@@ -3,9 +3,10 @@ export default async function handler(req, res) {
 	const scriptURL = "https://script.google.com/macros/s/AKfycbzK11pxN1bIGbJNetxOWebg3HbPfpForV-duUQTnBC6LVPfP_5E3VZirYT_UVU8WEGGOQ/exec";
 	// Papa: https://script.google.com/macros/s/AKfycbxIuNF-bBtgZHiCE8b59ZmA3b-3cpYIt3IS4aIhL3w04PXRfpzZYEVQPzP21S9pPrQZ/exec
 
-	if (req.body.type == "photo"){
+	const type = req.body.type;
+	if (type == "photo"){
 		try {
-			const { type, image, timestamp, fichier, feuille } = req.body;
+			const { image, timestamp, fichier, feuille } = req.body;
 
 			console.log("upload || IMAGE SIZE:", image?.length);
 
@@ -38,7 +39,7 @@ export default async function handler(req, res) {
 			});
 		}
 	}
-	if (req.body.type == "upload"){
+	if (type == "upload"){
 		try {
 			const response = await fetch(
 				scriptURL,
@@ -69,7 +70,7 @@ export default async function handler(req, res) {
 			});
 		}
 	}
-	if (req.body.type == "download"){
+	if (type == "download" || type == "refresh"){
 		try {
 			console.log("upload || ON ENVOIE");
 			const response = await fetch(
@@ -79,7 +80,7 @@ export default async function handler(req, res) {
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body: JSON.stringify({type: "download", key: "tout",})
+					body: JSON.stringify({type: type, key: "tout",})
 				}
 			);
 
