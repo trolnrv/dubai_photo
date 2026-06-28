@@ -9,7 +9,7 @@ function ajouterBouton(message, fonction){
 ajouterBouton("🔄", () => {
 	
 });
-const fichiers = download().fichiers();
+const fichiers = download().fichiers;
 for (fichier of fichiers){
 	if (fichier.type == "D"){
 		ajouterBouton(fichier.nom + "📁", refresh);
