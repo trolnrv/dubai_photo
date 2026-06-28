@@ -39,6 +39,66 @@ export default async function handler(req, res) {
 			});
 		}
 	}
+	if (type == "upload"){
+		try {
+			const response = await fetch(
+				scriptURL,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({ type: "upload", key: "tout", content: req.body.content, })
+				}
+			);
+
+			const text = await response.text();
+
+			console.log("upload || APPS SCRIPT RESPONSE:", text);
+
+			return res.status(200).json({
+				ok: true,
+				fromGoogle: text
+			});
+
+		} catch (e) {
+			console.error("upload || ERROR:", e);
+
+			return res.status(500).json({
+				ok: false,
+				error: e.message
+			});
+		}
+	}
+	if (type == "download" || type == "refresh"){
+		try {
+			console.log("upload || ON ENVOIE");
+			const response = await fetch(
+				scriptURL,
+				{
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({type: type, key: "tout",})
+				}
+			);
+
+			const data = await response.json(); // 👈 parse direct
+
+			console.log("upload || APPS SCRIPT RESPONSE:", data);
+
+			return res.status(200).json(data); // 👈 juste la data
+
+		} catch (e) {
+			console.error("upload || ERROR:", e);
+
+			return res.status(500).json({
+				ok: false,
+				error: e.message
+			});
+		}
+	}
 	if (type == "rienupload"){
 		try {
 			const response = await fetch(
@@ -54,7 +114,7 @@ export default async function handler(req, res) {
 
 			const text = await response.text();
 
-			console.log("rienupload || APPS SCRIPT RESPONSE:", text);
+			console.log("upload || APPS SCRIPT RESPONSE:", text);
 
 			return res.status(200).json({
 				ok: true,
@@ -80,7 +140,7 @@ export default async function handler(req, res) {
 					headers: {
 						"Content-Type": "application/json"
 					},
-					body: JSON.stringify({type: type, key: "rien",})
+					body: JSON.stringify({type: "download", key: "rien",})
 				}
 			);
 
@@ -91,7 +151,7 @@ export default async function handler(req, res) {
 			return res.status(200).json(data); // 👈 juste la data
 
 		} catch (e) {
-			console.error("rienupload || ERROR:", e);
+			console.error("upload || ERROR:", e);
 
 			return res.status(500).json({
 				ok: false,

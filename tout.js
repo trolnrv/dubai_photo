@@ -1,5 +1,4 @@
-import { download, refresh } from "./réseau.js";
-import { riendownload, rienupload } from "./réseau.js";//TMP
+import { download, refresh, rienupload, riendownload } from "./réseau.js";
 function ajouterBouton(message, fonction){
 	let bouton = document.createElement('button');
 	bouton.innerText = message;
