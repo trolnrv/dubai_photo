@@ -12,7 +12,7 @@ function getPathsInfos(){
 	const path = window.location.pathname;
 	const suffixe = path.split("/d/")[1];
 	const parties = suffixe.split("/");
-	return {dossierID: suffixe[0], parentID: suffixe[1]};
+	return {dossierID: parties[0], parentID: parties[1]};
 }
 async function charger(){
 	ajouterBouton("🔄Charger les nouveaux fichiers🔄", recharger);
