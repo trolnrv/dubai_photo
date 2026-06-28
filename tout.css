@@ -8,7 +8,7 @@ function create(htmlStr) {
     return frag;
 }
 
-const boutons = document.getElementById("booutons");
+const boutons = document.getElementById("boutons");
 const x = "azer";
 boutons.appendChild(create(
 	`<button>${x}</button>`
