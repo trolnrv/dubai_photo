@@ -4,6 +4,12 @@
 			"source": "/tout", "destination": "/tout.html"
 		},
 		{
+			"source": "/d/(.*)", "destination": "/d.html"
+		},
+		{
+			"source": "/f/(.*)", "destination": "/f.html"
+		},
+		{
 			"source": "/cam/(.*)", "destination": "/cam.html"
 		}
 	]
