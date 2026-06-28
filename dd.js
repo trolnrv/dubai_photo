@@ -6,7 +6,7 @@ function ajouterBouton(message, fonction){
 	document.body.appendChild(bouton);
 }
 function aller(lien){
-	window.location.href = lien; //window.location.href = `/cam/${id}/${feuille}`;
+	window.location.href = lien;
 }
 function getPathsInfos(){
 	const path = window.location.pathname;
