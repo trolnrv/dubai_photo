@@ -1,0 +1,153 @@
+function completer(value){
+  //  for (let key in value.fichiers){
+//    
+//  }
+}
+
+function MatGetFolders(){
+  let fichiers = {};
+  const folders = DriveApp.getFolders();
+  while (folders.hasNext()) {
+    const folder = folders.next();
+    let id = folder.getId();
+    let nom = folder.getName();
+    let sousElements = {};
+    const subFolders = folder.getFolders();
+    while (subFolders.hasNext()) {
+      const subFolder = subFolders.next();
+      sousElements[subFolder.getId()] = {nom: subFolder.getName()};
+    }
+    const files = folder.getFiles();
+    while (files.hasNext()){
+      const file = files.next();
+      if (file.getMimeType() == 'application/vnd.google-apps.spreadsheet'){
+        sousElements[file.getId()] = {nom: file.getName()};
+      }
+    }
+    fichiers[id] = {type: "D", nom: nom, sousElements: sousElements};
+  }
+  const files = DriveApp.getFiles();
+  while (files.hasNext()){
+    const file = files.next();
+    let id = file.getId();
+    let nom = file.getName();
+    if (file.getMimeType() == 'application/vnd.google-apps.spreadsheet'){
+      fichiers[id] = {type: "F", nom: nom, feuilles: {}};
+      for (const sheet of SpreadsheetApp.openById(id).getSheets()){
+        fichiers[id].feuilles[sheet.getName()] = {};
+      }
+    }
+  }
+  return fichiers;
+}
+
+function MatGetValue(){
+    const props = PropertiesService.getScriptProperties();
+    const key = "tout";
+    const value = props.getProperty(key);
+    console.log(value);
+    return value;
+}
+function MatSetValue(){
+    const props = PropertiesService.getScriptProperties();
+    const key = "tout";
+    const value = {
+      fichiers: MatGetFolders(),
+    }
+    props.setProperty(key, JSON.stringify(value));
+}
+
+
+
+function doPost(e) {
+  const data = JSON.parse(e.postData.contents);
+
+
+  if (data.type == "photo"){
+    const imageData = data.image;
+
+    const base64Data = imageData.split(",")[1];
+
+    const blob = Utilities.newBlob(
+      Utilities.base64Decode(base64Data),
+      "image/png",
+      Date().toString() + ".png"
+    );
+
+    const FOLDER_ID ="1FLZJ7hZM1SGHOnCfoDk18waJ2CVPvukX";
+    const folder = DriveApp.getFolderById(FOLDER_ID);
+    const file = folder.createFile(blob)
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+    const fileId = file.getId();
+    const imageUrl = "=IMAGE(\"https://drive.google.com/uc?export=view&id=" + fileId + "\")";
+
+    const fichier = data.fichier;
+    const feuille = data.feuille;
+
+    const sheet = SpreadsheetApp
+      .openById(fichier)
+      .getSheetByName(feuille);
+
+    sheet.appendRow([imageUrl]);
+
+    return ContentService.createTextOutput(fichier);
+  } 
+
+
+  if (data.type == "upload") {
+    const props = PropertiesService.getScriptProperties();
+
+    const key = data.key;
+
+    const value = JSON.stringify(data.content);
+    completer(value);
+
+    props.setProperty(key, value);
+
+    return ContentService.createTextOutput(
+      JSON.stringify({ ok: true, action: "upload" })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
+
+  if (data.type == "download") {
+    const props = PropertiesService.getScriptProperties();
+
+    const key = data.key;
+
+    const value = props.getProperty(key);
+
+    return ContentService.createTextOutput(value)
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  if (data.type == "refresh"){
+    MatSetValue();
+    return ContentService.createTextOutput(
+      JSON.stringify({ ok: true, action: "refresh" })
+    ).setMimeType(ContentService.MimeType.JSON);
+
+  }
+}
+
+function doGet() {
+  const randomText = "TEST_FILE_" + new Date().toISOString() + "_" + Math.random();
+
+  const blob = Utilities.newBlob(
+    randomText,
+    "text/plain",
+    "test.txt"
+  );
+
+  const file = DriveApp.createFile(blob);
+  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+  return ContentService.createTextOutput(
+    JSON.stringify({
+      ok: true,
+      url: file.getUrl()
+    })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
+

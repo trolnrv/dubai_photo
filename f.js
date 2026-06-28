@@ -20,7 +20,7 @@ async function charger(){
 	let fichiers = data.fichiers;
 	console.log(fichiers);
 	let fichierID = getPathsInfos();
-	for (let feuille in fichiers[fichierID]){
+	for (let feuille in fichiers[fichierID].feuilles){
 		ajouterBouton(feuille + "📊", () => {
 			aller(`/cam/${fichierID}/${encodeURIComponent(feuille)}`);
 		});
