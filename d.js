@@ -30,7 +30,7 @@ async function charger(){
 		}
 		if (fichiers[child].type == "F"){
 			ajouterBouton(fichiers[child].nom + "📄", () => {
-				aller(`/d/${child}/${dossierID}`);
+				aller(`/f/${child}/${dossierID}`);
 			});
 		}
 	}
