@@ -8,9 +8,17 @@ function ajouterBouton(message, fonction){
 function aller(lien){
 	window.location.href = lien; //window.location.href = `/cam/${id}/${feuille}`;
 }
+let url = window.location.pathname;
 async function charger(){
+	const predata =  download();
+	const preurl = riendownload();
+	const data = await predata;
+	url = await preurl;
 	ajouterBouton("🔄Charger les nouveaux fichiers🔄", recharger);
-	const data = await download();
+	if (url!=window.location.pathname){ajouterBouton("⬅️Retourner au dossier épinglé⬅️,",
+		() => {window.location.href = url;}
+	)};
+	ajouterBouton
 	let fichiers = data.fichiers;
 	console.log(fichiers);
 	for (let fichier in fichiers){
