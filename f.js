@@ -14,9 +14,25 @@ function getPathsInfos(){
 	const parties = suffixe.split("/");
 	return parties[0];
 }
+let url = window.location.pathname;
 async function charger(){
-	ajouterBouton("🔄Charger les nouveaux fichiers🔄", recharger);
-	const data = await download();
+	const predata =  download();
+	const preurl = riendownload();
+	const data = await predata;
+	url = await preurl;
+	ajouterBouton("🔄Charger les nouveaux fichiers🔄", async ()=>{recharger(true);});
+	if (url!=window.location.pathname){
+		ajouterBouton("⬅️Retourner au dossier de référence⬅️,",
+		() => {window.location.href = url;});
+		ajouterBouton("📍Définir comme dossier de référence📍",
+		async () => {
+			await rienupload(window.location.pathname);
+			await recharger(false);
+		});
+	};
+	else {ajouterBouton("🏠Voir tous les dossiers🏠", () => {
+		window.location.href = "/tout";
+	});}
 	let fichiers = data.fichiers;
 	console.log(fichiers);
 	let fichierID = getPathsInfos();
@@ -26,8 +42,8 @@ async function charger(){
 		});
 	}
 }
-async function recharger(){
-	await refresh();
+async function recharger(etRefresh){
+	if (etRefresh){await refresh();}
 	document.querySelectorAll("button").forEach((bouton) => {
 		bouton.remove();
 	});
