@@ -17,7 +17,7 @@ function initBoutons(){
 			showCameraUI();
 		});
 	document.getElementById("btnReturn")
-		.addEventListener("click", () => {
+		.addEventListener("click", async () => {
 			window.location.href = await riendownload();
 		});
 	document.getElementById("btnSwitch")
