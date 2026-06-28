@@ -9,6 +9,7 @@ function aller(lien){
 	window.location.href = lien; //window.location.href = `/cam/${id}/${feuille}`;
 }
 async function charger(){
+	ajouterBouton("🔄Charger les nouveaux fichiers🔄", recharger);
 	const data = await download();
 	let fichiers = data.fichiers;
 	console.log(fichiers);
@@ -30,11 +31,11 @@ async function charger(){
 		}
 	}
 }
-ajouterBouton("🔄Charger les nouveaux fichiers🔄", async () => {
+async function recharger(){
 	await refresh();
 	document.querySelectorAll("button").forEach((bouton) => {
 		bouton.remove();
 	});
 	await charger();
-});
+}
 await charger();
