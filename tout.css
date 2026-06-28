@@ -1,15 +1,6 @@
-function create(htmlStr) {
-    let frag = document.createDocumentFragment();
-    let temp = document.createElement('div');
-    temp.innerHTML = htmlStr;
-    while (temp.firstChild) {
-        frag.appendChild(temp.firstChild);
-    }
-    return frag;
-}
-
-const boutons = document.getElementById("boutons");
-const x = "azer";
-boutons.appendChild(create(
-	`<button>${x}</button>`
-));
+const button = document.createElement('button');
+button.innerText = 'Can you click me?'
+button.addEventListener('click', () => {
+  alert('Oh, you clicked me!');
+});
+document.body.appendChild(button);
