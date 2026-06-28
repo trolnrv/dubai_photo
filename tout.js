@@ -21,7 +21,7 @@ async function charger(){
 		ajouterBouton("📍Définir comme dossier de référence📍",
 		async () => {
 			await rienupload(window.location.pathname);
-			await etRefresh(false);
+			await recharger(false);
 		});
 	};
 	let fichiers = data.fichiers;
