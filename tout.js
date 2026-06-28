@@ -31,9 +31,9 @@ async function charger(){
 	}
 }
 ajouterBouton("🔄Charger les nouveaux fichiers🔄", () => {
-	const xxx = await refresh();
+	//await refresh();
 	document.querySelectorAll("button").forEach((bouton) => {
 		bouton.remove();
 	});
 });
-const xxx = await charger();
+await charger();
