@@ -22,7 +22,7 @@ async function charger(){
 	let infos = getPathsInfos();
 	console.log(infos);
 	let dossierID = infos.dossierID;
-	for (let child in dossierID){
+	for (let child in fichiers[dossierID]){
 		if (fichiers[child].type == "D"){
 			ajouterBouton(fichiers[child].nom + "📁", () => {
 				aller(`/d/${child}/${dossierID}`);
