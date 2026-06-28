@@ -1,5 +1,5 @@
 const button = document.createElement('button');
-button.innerText = 'Can you click me?'
+button.innerText = 'Can you click me?';
 button.addEventListener('click', () => {
   alert('Oh, you clicked me!');
 });
