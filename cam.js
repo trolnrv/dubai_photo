@@ -1,3 +1,4 @@
+import { riendownload } from "./réseau.js";
 import { startCamera, saveDessins } from "./caméra.js";
 import { log } from "./utils.js";
 import { initColoriage, initZoom, showCameraUI, showEditUI, cantdraw } from "./dessin.js";
@@ -17,7 +18,7 @@ function initBoutons(){
 		});
 	document.getElementById("btnReturn")
 		.addEventListener("click", () => {
-			window.location.href = "/";
+			window.location.href = await riendownload();
 		});
 	document.getElementById("btnSwitch")
 		.addEventListener("click", startCamera);
