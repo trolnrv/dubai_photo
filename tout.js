@@ -16,16 +16,16 @@ async function charger(){
 	for (let fichier in fichiers){
 		if (fichiers[fichier].type == "D"){
 			ajouterBouton(fichiers[fichier].nom + "📁", () => {
-				aller(`/d/${fichier}/`);
+				aller(`/d/${fichier}`);
 			});
 		}
 		if (fichiers[fichier].type == "F"){
 			ajouterBouton(fichiers[fichier].nom + "📄", () => {
-				aller(`/f/${fichier}/`);
+				aller(`/f/${fichier}`);
 			});
 			for (let feuille in fichiers[fichier].feuilles){
 				ajouterBouton(feuille + "📊", () => {
-					aller(`/cam/${fichier}/${encodeURIComponent(feuille)}/`);
+					aller(`/cam/${fichier}/${encodeURIComponent(feuille)}`);
 				});
 			}
 		}

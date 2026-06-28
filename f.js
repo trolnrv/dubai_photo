@@ -10,7 +10,7 @@ function aller(lien){
 }
 function getPathsInfos(){
 	const path = window.location.pathname;
-	const suffixe = path.split("/d/")[1];
+	const suffixe = path.split("/f/")[1];
 	const parties = suffixe.split("/");
 	return parties[0];
 }
@@ -19,18 +19,11 @@ async function charger(){
 	const data = await download();
 	let fichiers = data.fichiers;
 	console.log(fichiers);
-	let dossierID = getPathsInfos();
-	for (let child in fichiers[dossierID].sousElements){
-		if (fichiers[child].type == "D"){
-			ajouterBouton(fichiers[child].nom + "📁", () => {
-				aller(`/d/${child}`);
-			});
-		}
-		if (fichiers[child].type == "F"){
-			ajouterBouton(fichiers[child].nom + "📄", () => {
-				aller(`/f/${child}`);
-			});
-		}
+	let fichierID = getPathsInfos();
+	for (let feuille in fichiers[fichierID]){
+		ajouterBouton(feuille + "📊", () => {
+			aller(`/cam/${child}`);
+		});
 	}
 }
 async function recharger(){
