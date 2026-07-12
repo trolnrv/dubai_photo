@@ -56,7 +56,14 @@ function concatainer(){//{{{
 	//}
 	ctxFinal.drawImage(photo, 0, 0);
 	ctxFinal.drawImage(dessin, 0, 0);
-	saveDessins("final", "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo", "Feuille 1");
+	//saveDessins("final", "1P7oM4sAkM87rDaaJtDM5WSxZW-ow5d4wA68dd8cozTo", "Feuille 1");
+	const path = window.location.pathname;//
+	const suffixe = path.split("/cam/")[1];//
+	const id = suffixe.split("/")[0];//
+	const feuille = decodeURIComponent(suffixe.split("/")[1]);//
+	console.log(`id: ${id}, feuille: ${feuille}`);//
+	saveDessins("final", id, feuille);
+
 	ctxFinal.clearRect(0, 0, dessin.width, dessin.height);
 }//}}}
 
