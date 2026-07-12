@@ -3,7 +3,8 @@ function ajouterBouton(message, fonction){
 	let bouton = document.createElement('button');
 	bouton.innerText = message;
 	bouton.addEventListener('click', fonction);
-	document.body.appendChild(bouton);
+	//document.body.appendChild(bouton);
+	document.getElementById("buttons").appendChild(bouton);
 }
 function aller(lien){
 	window.location.href = lien;

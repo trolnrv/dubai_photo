@@ -3,12 +3,40 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>📸 Dubaï Photo™</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 16px;
+				font-family: system-ui,
+				sans-serif;
+			}
+			h2 {
+				font-size: 28px;
+				margin: 10px 0 15px;
+				text-align: center;
+			}
+			#buttons {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(240px, 1fr));
+				gap: 12px; align-items: start;
+			}
+			#buttons button{
+				width: 100%;
+				min-width: 45vw;
+				max-width: 100%;
+				padding: 14px 16px;
+				font-size: 18px;
+				border-radius: 10px;
+				cursor: pointer;
+			}
+		</style>
 
 	</head>
 
 	<body>
 		<h2>📸 Dubaï Photo™</h2>
 		<br>
+		<div id="buttons"></div>
 		<script type="module" src="/f.js"></script>
 	</body>
 </html>
