@@ -43,7 +43,7 @@ async function charger(){
 				aller(`/f/${fichier}`);
 			});
 			for (let feuille in fichiers[fichier].feuilles){
-				ajouterBouton(feuille + "📊", () => {
+				ajouterBouton(feuille + "📊 de " + fichier, () => {
 					aller(`/cam/${fichier}/${encodeURIComponent(feuille)}`);
 				});
 			}
