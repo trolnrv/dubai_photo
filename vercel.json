@@ -1,6 +1,9 @@
 {
 	"rewrites": [
 		{
+			"source": "/", "destination": "/tout.html"
+		},
+		{
 			"source": "/tout", "destination": "/tout.html"
 		},
 		{
